@@ -1,0 +1,37 @@
+
+angular.module('app.services', [])
+
+.factory('notifyService', [
+    '$http'
+    ($http) ->
+        STORAGE_ID = 'tasks'
+        return {
+            set: ->
+                STORAGE_ID
+        }
+])
+
+.factory('loginService', [
+    '$http'
+    ($http) ->
+        STORAGE_ID = 'tasks'
+        return {
+            set: ->
+                STORAGE_ID
+        }
+])
+
+.factory('sessionService', [
+    '$http'
+    ($http) ->
+        return {
+            set: (key, value) ->
+                sessionStorage.setItem(key, value)
+
+            get: (key)->
+                sessionStorage.getItem(key)
+
+            destroy: (key)->
+                sessionStorage.removeItem(key)
+        }
+])
