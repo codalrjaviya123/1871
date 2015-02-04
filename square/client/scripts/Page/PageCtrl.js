@@ -63,7 +63,7 @@
           var user_data = $scope.signup;          
           var request = $http({
               method: "post",
-              url: webScriptServerUrl + "signup.php",
+              url: webScriptServerUrl + "signup",
               data: {
                   full_name: user_data.fullName,
                   email: user_data.email,

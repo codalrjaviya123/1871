@@ -24,7 +24,7 @@
         login: function(user_data) {
            var request = $http({
               method: "post",
-              url: webScriptServerUrl + "login.php",
+              url: webScriptServerUrl + "login",
               data: {
                   email: user_data.email,
                   password: user_data.password
@@ -39,17 +39,17 @@
                 return false;
               }
               else {
-                sessionService.set('id', data.id);
+                sessionService.set('uid', data.uid);
                 $location.url('/dashboard?msg:logged_in'); 
               }
           });
         },
         logout: function() {
-            sessionService.destroy('id');
-            $location.path('signin?msg:logged_out'); 
+            sessionService.destroy('uid');
+            $location.url('/pages/signin?msg:logged_out'); 
         },
         islogged: function() {
-           var $checkSessionServer = $http.post(webScriptServerUrl + "check_session.php");
+           var $checkSessionServer = $http.get(webScriptServerUrl + "session");
            return $checkSessionServer;
         }
       };
@@ -66,7 +66,7 @@
           return sessionStorage.getItem(key);
         },
         destroy: function(key) {
-          $http.post(webScriptServerUrl + "logout.php");
+          $http.get(webScriptServerUrl + "logout");
           return sessionStorage.removeItem(key);
         }
       };
